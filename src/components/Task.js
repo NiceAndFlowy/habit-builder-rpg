@@ -1,7 +1,8 @@
 import React from 'react';
+import { Segment } from 'semantic-ui-react';
 
 const Task = () => (
-  <li className="list-group-item">Play Piano </li>
+  <Segment>Play Piano</Segment>
 );
 
 export default Task;

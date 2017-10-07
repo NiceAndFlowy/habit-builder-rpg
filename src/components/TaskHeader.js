@@ -1,9 +1,10 @@
 import React from 'react';
+import { Header } from 'semantic-ui-react';
 
 const TaskHeader = () => (
-  <div className="list-group-item list-group-item-info">
+  <Header>
     Task Header 
-  </div>
+  </Header>
 );
 
 export default TaskHeader;

@@ -1,12 +1,13 @@
 import React from 'react';
 import TaskHeader from './TaskHeader';
 import TaskList from './TaskList';
+import { Grid } from 'semantic-ui-react';
 
 const TaskColumn = () => (
-  <div className="container">
+  <Grid.Column>
     <TaskHeader />
     <TaskList />
-  </div>
+  </Grid.Column>
 )
 
 export default TaskColumn;
