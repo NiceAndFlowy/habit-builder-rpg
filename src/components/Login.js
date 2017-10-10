@@ -1,11 +1,43 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Form, Button } from 'semantic-ui-react';
+import Validator from 'validator';
+import InlineError from './messages/InlineError';
 
 class Login extends Component {
-  state = {}
+  state = {
+    data: {
+      email: '',
+      password: ''
+    },
+    loading: false,
+    errors: {}
+  };
+
+  onChange = e => 
+    this.setState({
+      data: { ...this.state.data, [e.target.name]: e.target.value }
+    })
+
+  onSubmit = () => {
+    const errors = this.validate(this.state.data);
+    this.setState({ errors });
+    if (Object.keys(errors).length === 0) {
+      this.props.submit(this.state.data);
+    }
+  }
+  
+  validate = data => {
+    const errors = {};
+    if (!Validator.isEmail(data.email)) errors.email = "Invalid email";
+    if (!data.password) errors.password = "Cannot be blank";
+    return errors;
+  }  
+  
   render() {
+    const { data, errors } = this.state;
     return (
-      <Form>
+      <Form onSubmit={this.onSubmit}>
         <Form.Field>
           <label htmlFor="email">Email</label>
           <input
@@ -13,7 +45,10 @@ class Login extends Component {
             id="email"
             name="email"
             placeholder="example@example.com"
+            value={data.email}
+            onChange={this.onChange}
           />
+          {errors.email && <InlineError text={errors.email} />}
         </Form.Field>
         <Form.Field>
           <label htmlFor="password">Password</label>
@@ -21,12 +56,19 @@ class Login extends Component {
             type="password"
             id="password"
             name="password"
+            value={data.password}
+            onChange={this.onChange}
           />
+          {errors.password && <InlineError text={errors.password} />}
         </Form.Field>
         <Button primary>Login</Button>
       </Form>
     );
   }
 }
+
+Login.propTypes = {
+  submit: PropTypes.func.isRequired,
+};
 
 export default Login;

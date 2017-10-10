@@ -3,7 +3,7 @@ import { Header } from 'semantic-ui-react';
 
 const TaskHeader = () => (
   <Header>
-    Task Header 
+    Task Header  
   </Header>
 );
 
