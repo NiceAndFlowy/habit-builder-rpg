@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import TaskColumn from '../TaskColumn';
 import { Grid } from 'semantic-ui-react';
+import TaskColumn from '../TaskColumn';
 
-const HomePage = () => {
-  return (
+const HomePage = () => 
+  (
     <div>
       <h1>Homepage!</h1>
       <Link to="/login">Login</Link>
@@ -16,6 +16,6 @@ const HomePage = () => {
       </Grid>
     </div>
   );
-};
+
 
 export default HomePage;
