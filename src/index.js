@@ -9,11 +9,17 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import registerServiceWorker from './registerServiceWorker';
 import App from './App'
 import rootReducer from './reducers/index';
+import { userLoggedIn } from './actions/authActions';
 
 const store = createStore(
   rootReducer, 
   composeWithDevTools(applyMiddleware(thunk))
 );
+
+if (localStorage.habitJWT) {
+  const user = { token: localStorage.habitJWT };
+  store.dispatch(userLoggedIn(user));
+}
 
 render(
   <BrowserRouter>
