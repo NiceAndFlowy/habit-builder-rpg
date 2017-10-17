@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserHistory, BrowserRouter } from 'react-router-dom';
+import { Route, BrowserHistory, BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
@@ -12,7 +12,7 @@ import rootReducer from './reducers/index';
 import { userLoggedIn } from './actions/authActions';
 
 const store = createStore(
-  rootReducer, 
+  rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
 
@@ -24,7 +24,7 @@ if (localStorage.habitJWT) {
 render(
   <BrowserRouter>
     <Provider store={store}>
-      <App /> 
+      <Route component={App} />
     </Provider>
   </BrowserRouter>,
   document.getElementById('root')

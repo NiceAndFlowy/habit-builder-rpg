@@ -10,14 +10,14 @@ export const userLoggedOut = () => ({
   type: USER_LOGGED_OUT,
 });
 
-// Thunk 
-export const login = credentials => dispatch => 
+// Thunk
+export const login = credentials => dispatch =>
   api.user.login(credentials).then(user => {
     localStorage.habitJWT = user.token;
     dispatch(userLoggedIn(user));
   });
 
-export const logout = () => dispatch => { 
+export const logout = () => dispatch => {
     localStorage.removeItem('habitJWT');
     dispatch(userLoggedOut());
   };
