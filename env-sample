@@ -1,0 +1,4 @@
+BROWSER=none
+API_PORT=8080
+DATABASE_URL=mongodb://localhost/habit-builder
+JWT_SECRET=secretkeyhere
